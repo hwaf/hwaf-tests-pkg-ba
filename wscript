@@ -13,8 +13,17 @@ def configure(ctx):
 def build(ctx):
     ctx(
         features="cxx cxxprogram",
-        name="pkg-ba",
+        name="app-pkg-ba",
         source="src/pkg-ba.cxx",
+        target="app-pkg-ba",
+        use="ROOT pkg-aa pkg-ab",
+        )
+
+    # use task-a -> b -> cxx
+    ctx(
+        features="cxx cxxshlib",
+        name="pkg-ba",
+        source="src/ba.in",
         target="pkg-ba",
         use="ROOT pkg-aa pkg-ab",
         )
@@ -42,6 +51,6 @@ TaskGen.declare_chain(
     name='task-c',
     rule='/bin/cp ${SRC} ${TGT}',
     ext_in='.b',
-    ext_out='.c',
+    ext_out='.cxx',
     reentrant = False,
     )

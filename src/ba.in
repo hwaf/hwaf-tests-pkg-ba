@@ -1,0 +1,15 @@
+#include <iostream>
+#include "TH1D.h"
+
+#include "pkg-ab/h1d.hh"
+
+namespace pkg_ba {
+
+void test_h1d()
+{
+  TH1D *h = new TH1D("h1-ba", "h1-ba", 100, 0., 100.);
+  std::cout << "h1-ba: " << h->GetEntries() << "\n";
+  delete h; h = NULL;
+}
+
+}
