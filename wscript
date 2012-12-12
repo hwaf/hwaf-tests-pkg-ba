@@ -23,3 +23,25 @@ def build(ctx):
 
 def install(ctx):
     return
+
+### define a few dummy tasks --------------------------------------------------
+from waflib import TaskGen
+TaskGen.declare_chain(
+    name='task-a',
+    rule='/bin/cp ${SRC} ${TGT}',
+    ext_in='.in',
+    ext_out='.a',
+    )
+TaskGen.declare_chain(
+    name='task-b',
+    rule='/bin/cp ${SRC} ${TGT}',
+    ext_in='.a',
+    ext_out='.b',
+    )
+TaskGen.declare_chain(
+    name='task-c',
+    rule='/bin/cp ${SRC} ${TGT}',
+    ext_in='.b',
+    ext_out='.c',
+    reentrant = False,
+    )
