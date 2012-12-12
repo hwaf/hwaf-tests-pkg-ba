@@ -8,8 +8,6 @@ def pkg_deps(ctx):
     return
 
 def configure(ctx):
-    # register this module for export
-    ctx.hwaf_export_module("wscript")
     return
 
 def build(ctx):
