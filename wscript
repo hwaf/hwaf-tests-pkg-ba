@@ -28,6 +28,13 @@ def build(ctx):
         use="ROOT pkg-aa pkg-ab",
         )
 
+    ctx(
+        features     = 'py',
+        name         = 'py-pkgba',
+        source       = 'python/pkgba.py',
+        install_path = '${INSTALL_AREA}/python',
+        )
+
     return
 
 def install(ctx):
