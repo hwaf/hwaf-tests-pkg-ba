@@ -3,6 +3,7 @@
 import waflib.Logs as msg
 
 def pkg_deps(ctx):
+    ctx.use_pkg('pkg-settings')
     ctx.use_pkg('pkg-aa')
     ctx.use_pkg('pkg-ab')
     return
