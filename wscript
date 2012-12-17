@@ -9,27 +9,32 @@ def pkg_deps(ctx):
     return
 
 def configure(ctx):
-    ctx.load("find_python")
-    ctx.find_python()
     return
 
 def build(ctx):
+
     ctx(
         features="cxx cxxprogram",
         name="app-pkg-ba",
         source="src/pkg-ba.cxx",
         target="app-pkg-ba",
-        use="ROOT pkg-aa pkg-ab",
+        use="pkg-aa pkg-ab",
         )
 
     # use task-a -> b -> cxx
-    ctx(
-        features="cxx cxxshlib",
-        name="pkg-ba",
-        source="src/ba.in",
-        target="pkg-ba",
-        use="ROOT pkg-aa pkg-ab",
+    ctx.build_linklib(
+        name="pkg-ab",
+        source="src/pkg-ba.in",
+        use="pkg-aa pkg-ab",
         )
+
+    # ctx(
+    #     features="cxx cxxshlib",
+    #     name="pkg-ba",
+    #     source="src/ba.in",
+    #     target="pkg-ba",
+    #     use="ROOT pkg-aa pkg-ab",
+    #     )
 
     ctx(
         features     = 'py',
