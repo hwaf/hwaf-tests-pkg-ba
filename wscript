@@ -22,19 +22,13 @@ def build(ctx):
         )
 
     # use task-a -> b -> cxx
-    ctx.build_linklib(
-        name="pkg-ab",
-        source="src/pkg-ba.in",
-        use="pkg-aa pkg-ab",
+    ctx(
+        features="cxx cxxshlib",
+        name="pkg-ba",
+        source="src/ba.in",
+        target="pkg-ba",
+        use="ROOT pkg-aa pkg-ab",
         )
-
-    # ctx(
-    #     features="cxx cxxshlib",
-    #     name="pkg-ba",
-    #     source="src/ba.in",
-    #     target="pkg-ba",
-    #     use="ROOT pkg-aa pkg-ab",
-    #     )
 
     ctx(
         features     = 'py',
